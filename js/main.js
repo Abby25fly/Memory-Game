@@ -1,53 +1,40 @@
-function imgApper() {
-    var imgPet= document.getElementById("imgbox");
-    if (imgPet.style.visibility === 'hidden') {
-        imgPet.style.visibility = 'visible';
-    } else {
-        imgPet.style.visibility = 'hidden';
-    }
-}
+var imagenes=[
+"images/cat.jpg",
+"images/puppy.jpg",
+"images/kuoka1.jpg",
+"images/cat.jpg",
+"images/puppy.jpg",
+"images/kuoka1.jpg"];
 
-function imgApper2() {
-    var imgPet2= document.getElementById("imgbox2");
-    if (imgPet2.style.visibility === 'hidden') {
-        imgPet2.style.visibility = 'visible';
-    } else {
-        imgPet2.style.visibility = 'hidden';
-    }
-}
+var container=document.getElementsByClassName('game')[0];
+container.addEventListener("click",memory);
+var contClick= 0;
+var imgBefore;
+var imgID;
 
-function imgApper3() {
-    var imgPet3= document.getElementById("imgbox3");
-    if (imgPet3.style.visibility === 'hidden') {
-        imgPet3.style.visibility = 'visible';
-    } else {
-        imgPet3.style.visibility = 'hidden';
+function memory(evento){
+  var img = evento.target.children[0];
+  var idImg = img.id;
+  if(img.nodeName == "IMG"){
+    img.className = "mostrar";
+    contClick++;
+    console.log(contClick);
+    if(contClick == 1){
+      imgBefore= img.src;
+      imgID= img.id;
+      console.log(contClick);
     }
-}
-
-function imgApper4() {
-    var imgPet4= document.getElementById("imgbox4");
-    if (imgPet4.style.visibility === 'hidden') {
-        imgPet4.style.visibility = 'visible';
-    } else {
-        imgPet4.style.visibility = 'hidden';
+    else if (contClick == 2) {
+      if(imgBefore == img.src){
+        console.log("iguales");
+      }
+      else {
+        setTimeout(function(){
+          $( "#"+ imgID).removeAttr( "class" ).attr('class', 'ocultar');
+          $( "#"+ idImg).removeAttr( "class" ).attr('class', 'ocultar');
+        }, 600)
+      }
+      contClick=0;
     }
-}
-
-function imgApper5() {
-    var imgPet5= document.getElementById("imgbox5");
-    if (imgPet5.style.visibility === 'hidden') {
-        imgPet5.style.visibility = 'visible';
-    } else {
-        imgPet5.style.visibility = 'hidden';
-    }
-}
-
-function imgApper6() {
-    var imgPet6= document.getElementById("imgbox6");
-    if (imgPet6.style.visibility === 'hidden') {
-        imgPet6.style.visibility = 'visible';
-    } else {
-        imgPet6.style.visibility = 'hidden';
-    }
+  }
 }
